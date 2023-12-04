@@ -26,3 +26,11 @@
 				
 # rencna project:
 Muhammad Surya Danendra Pabana (1101210209) rental kaset game 
+
+# referensi
+https://netbeans.apache.org/tutorial/main/kb/docs/java/quickstart-gui/
+https://github.com/RomandyVu/Game-Rental-System/blob/main/GUIRentalStore.java
+https://github.com/kovacevic-marko/Movie-Rental-System
+https://github.com/abbasZah/Movie-Rental-System-Java-Project
+guankan database kalau bisa firebase
+
