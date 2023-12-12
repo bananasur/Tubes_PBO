@@ -33,4 +33,6 @@ Muhammad Surya Danendra Pabana (1101210209) rental kaset game
 * https://github.com/kovacevic-marko/Movie-Rental-System
 * https://github.com/abbasZah/Movie-Rental-System-Java-Project
 * guankan database kalau bisa firebase
+* https://github.com/AbdullahShahid01/Rent-a-Car-Management-System
+* https://www.youtube.com/watch?v=ZH76M2W2Iz8
 
