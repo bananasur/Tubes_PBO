@@ -53,7 +53,7 @@ public class mainmenu extends javax.swing.JFrame {
         Header.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
         Header.setForeground(new java.awt.Color(255, 204, 0));
         Header.setText("WELCOME TO BANANA SHOP !!!");
-        jPanel1.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 48, -1, 48));
+        jPanel1.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, 48));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/mainmenu.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 570));

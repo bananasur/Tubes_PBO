@@ -21,8 +21,9 @@ public class login1 extends javax.swing.JFrame {
         
         Dimension windows = Toolkit.getDefaultToolkit().getScreenSize();
         int x = windows.width / 2 - this.getSize().width / 2;
-        int y = windows.width / 2 - this.getSize().width / 2;
+        int y = windows.width / 3 - this.getSize().width / 2;
         this.setLocation(x,y);
+        this.setResizable(false);
     }
 
     /**
