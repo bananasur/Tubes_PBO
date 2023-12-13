@@ -6,6 +6,7 @@ package pbo;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,12 +40,12 @@ public class login1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Header = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
-        Password = new javax.swing.JTextField();
         Usernamelabel = new javax.swing.JLabel();
         Passwordlabel = new javax.swing.JLabel();
         Loginbutton = new javax.swing.JButton();
         Resetbutton = new javax.swing.JButton();
         Closebutton = new javax.swing.JButton();
+        Password = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,12 +57,6 @@ public class login1 extends javax.swing.JFrame {
         Header.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Header.setForeground(new java.awt.Color(255, 255, 255));
         Header.setText("Please Enter Your Login Details");
-
-        Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
-            }
-        });
 
         Usernamelabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Usernamelabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,19 +94,17 @@ public class login1 extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Header)
-                .addGap(126, 126, 126))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Usernamelabel)
                     .addComponent(Passwordlabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Username)
-                    .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Password))
                 .addGap(67, 67, 67))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
@@ -120,7 +113,11 @@ public class login1 extends javax.swing.JFrame {
                 .addComponent(Resetbutton)
                 .addGap(64, 64, 64)
                 .addComponent(Closebutton)
-                .addGap(64, 64, 64))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Header)
+                .addGap(126, 126, 126))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,9 +130,9 @@ public class login1 extends javax.swing.JFrame {
                     .addComponent(Usernamelabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Passwordlabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addComponent(Passwordlabel)
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Loginbutton)
                     .addComponent(Resetbutton)
@@ -162,22 +159,36 @@ public class login1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
-
+    private int loginAttempts = 3;
     private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
+        
         String username = Username.getText();
         String password = Password.getText();
 
         // Check if the username and password are correct
         if (isValidUser(username, password)) {
             // Successful login, perform actions here
-            System.out.println("Login Successful");
+            Rent rentFrame = new Rent();
+        
+            // Set the visibility of the Rent frame to true
+            rentFrame.setVisible(true);
+
+            // Close the current login frame if needed
+            this.dispose();
+        } 
+        else {
+        // Invalid login
+        loginAttempts--;
+
+        if (loginAttempts > 0) {
+            // Show an error message with the remaining attempts
+            JOptionPane.showMessageDialog(this, "Login Failed\nInvalid Username or Password\nAttempts left: " + loginAttempts, "Login Failed", JOptionPane.ERROR_MESSAGE);
         } else {
-            // Invalid login, show an error message
-            System.out.println("Invalid Username or Password");
+            // No more attempts left, exit the application or take appropriate action
+            JOptionPane.showMessageDialog(this, "No more login attempts. Exiting application.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
+    }
     }//GEN-LAST:event_LoginbuttonActionPerformed
 
     private boolean isValidUser(String username, String password) {
@@ -234,7 +245,7 @@ public class login1 extends javax.swing.JFrame {
     private javax.swing.JButton Closebutton;
     private javax.swing.JLabel Header;
     private javax.swing.JButton Loginbutton;
-    private javax.swing.JTextField Password;
+    private javax.swing.JPasswordField Password;
     private javax.swing.JLabel Passwordlabel;
     private javax.swing.JButton Resetbutton;
     private javax.swing.JTextField Username;
