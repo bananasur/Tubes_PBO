@@ -46,7 +46,9 @@ public class login1 extends javax.swing.JFrame {
         Resetbutton = new javax.swing.JButton();
         Closebutton = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
+        Header1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +58,7 @@ public class login1 extends javax.swing.JFrame {
 
         Header.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Header.setForeground(new java.awt.Color(255, 255, 255));
-        Header.setText("Please Enter Your Login Details");
+        Header.setText("Welcome To Banana Shop");
 
         Usernamelabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         Usernamelabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,11 +92,23 @@ public class login1 extends javax.swing.JFrame {
             }
         });
 
+        Header1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Header1.setForeground(new java.awt.Color(255, 255, 255));
+        Header1.setText("Please Enter Your Login Details");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(Loginbutton)
+                .addGap(64, 64, 64)
+                .addComponent(Resetbutton)
+                .addGap(64, 64, 64)
+                .addComponent(Closebutton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Usernamelabel)
@@ -106,25 +120,22 @@ public class login1 extends javax.swing.JFrame {
                         .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Password))
                 .addGap(67, 67, 67))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(Loginbutton)
-                .addGap(64, 64, 64)
-                .addComponent(Resetbutton)
-                .addGap(64, 64, 64)
-                .addComponent(Closebutton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Header)
-                .addGap(126, 126, 126))
+                .addGap(106, 106, 106))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(112, Short.MAX_VALUE)
+                    .addComponent(Header1)
+                    .addGap(80, 80, 80)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addComponent(Header)
-                .addGap(36, 36, 36)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Usernamelabel))
@@ -138,12 +149,20 @@ public class login1 extends javax.swing.JFrame {
                     .addComponent(Resetbutton)
                     .addComponent(Closebutton))
                 .addGap(30, 30, 30))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(46, 46, 46)
+                    .addComponent(Header1)
+                    .addContainerGap(181, Short.MAX_VALUE)))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbo/WelcomeImage.jpg"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, 0, 1350, 620));
+
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,12 +263,14 @@ public class login1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Closebutton;
     private javax.swing.JLabel Header;
+    private javax.swing.JLabel Header1;
     private javax.swing.JButton Loginbutton;
     private javax.swing.JPasswordField Password;
     private javax.swing.JLabel Passwordlabel;
     private javax.swing.JButton Resetbutton;
     private javax.swing.JTextField Username;
     private javax.swing.JLabel Usernamelabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
