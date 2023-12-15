@@ -4,6 +4,8 @@
  */
 package pbo;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -21,7 +23,11 @@ public class Rent extends javax.swing.JFrame {
     
     public Rent() {
         initComponents();
-        
+        Dimension windows = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = windows.width / 2 - this.getSize().width / 2;
+        int y = windows.width / 3 - this.getSize().width / 2;
+        this.setLocation(x,y);
+        this.setResizable(false);
     }
     
     @Override
@@ -66,12 +72,15 @@ public class Rent extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(209, 214, 216));
         container.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
+
+        container.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 141, 369, 179));
 
         gameoption.setFont(new java.awt.Font("Segoe UI Semibold", 1, 28)); // NOI18N
         gameoption.setModel(new javax.swing.AbstractListModel<String>() {
@@ -81,25 +90,36 @@ public class Rent extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(gameoption);
 
+        container.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 96, -1, 263));
+        container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 163, 249, 31));
+
         Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailActionPerformed(evt);
             }
         });
+        container.add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 259, 249, 31));
 
         jLabel1.setText("Please Enter Your Identity");
+        container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 62, 203, -1));
 
         jLabel2.setText("Name:");
+        container.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 141, -1, -1));
 
         jLabel3.setText("Email");
+        container.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 231, -1, -1));
 
         chooselabel.setText("Plese Choose Yourgame");
+        container.add(chooselabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 62, -1, -1));
 
-        Quantitybox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
+        Quantitybox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        container.add(Quantitybox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 387, -1, -1));
 
         quantitylabel.setText("Quantity");
+        container.add(quantitylabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 387, -1, -1));
 
         jLabel7.setText("Receipt");
+        container.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 62, 203, -1));
 
         Resetbutton.setText("Reset");
         Resetbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,10 +127,13 @@ public class Rent extends javax.swing.JFrame {
                 ResetbuttonActionPerformed(evt);
             }
         });
+        container.add(Resetbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 352, 83, -1));
 
         quantitylabel1.setText("Duration (days)");
+        container.add(quantitylabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 419, -1, -1));
 
         Durationbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "4", "5", "6", "7", "8", "9", "10" }));
+        container.add(Durationbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 416, -1, -1));
 
         Rent.setText("Rent");
         Rent.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +141,7 @@ public class Rent extends javax.swing.JFrame {
                 RentActionPerformed(evt);
             }
         });
+        container.add(Rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 352, 83, -1));
 
         Paybutton.setText("Pay");
         Paybutton.addActionListener(new java.awt.event.ActionListener() {
@@ -125,108 +149,15 @@ public class Rent extends javax.swing.JFrame {
                 PaybuttonActionPerformed(evt);
             }
         });
+        container.add(Paybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 352, 228, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("WELCOME TO BANANA SHOP");
+        container.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
 
         jLabel5.setText("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
-        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
-        container.setLayout(containerLayout);
-        containerLayout.setHorizontalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGap(307, 307, 307)
-                        .addComponent(jLabel4))
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(containerLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(containerLayout.createSequentialGroup()
-                                            .addComponent(Rent, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(Resetbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(containerLayout.createSequentialGroup()
-                                    .addComponent(quantitylabel1)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(Durationbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(containerLayout.createSequentialGroup()
-                                    .addComponent(quantitylabel)
-                                    .addGap(61, 61, 61)
-                                    .addComponent(Quantitybox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(chooselabel)
-                                .addGap(125, 125, 125)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(containerLayout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(Paybutton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(126, 126, 126))
-        );
-        containerLayout.setVerticalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(6, 6, 6)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(chooselabel)
-                    .addComponent(jLabel7))
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(containerLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Resetbutton)
-                            .addComponent(Rent)
-                            .addComponent(Paybutton))
-                        .addGap(116, 116, 116))
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Quantitybox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quantitylabel))
-                        .addGap(7, 7, 7)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(quantitylabel1)
-                            .addComponent(Durationbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(53, Short.MAX_VALUE))))
-        );
+        container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 913, -1));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 940, 490));
 
@@ -319,7 +250,7 @@ public class Rent extends javax.swing.JFrame {
 
     // Get current date
     java.util.Date currentDate = new java.util.Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     String formattedDate = sdf.format(currentDate);
 
     // Calculate expected return date
@@ -353,29 +284,6 @@ public class Rent extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
