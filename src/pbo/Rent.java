@@ -6,6 +6,7 @@ package pbo;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -30,10 +31,6 @@ public class Rent extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
-    @Override
-    public String toString() {
-        return "Customized toString: " + super.toString();
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +62,7 @@ public class Rent extends javax.swing.JFrame {
         Paybutton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        Closebutton = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,6 +156,14 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel5.setText("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         container.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 913, -1));
+
+        Closebutton.setText("Close");
+        Closebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClosebuttonActionPerformed(evt);
+            }
+        });
+        container.add(Closebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
 
         getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 940, 490));
 
@@ -269,6 +275,24 @@ public class Rent extends javax.swing.JFrame {
     jTextArea1.append("Expected Return\t: " + expectedReturnDate);
     }//GEN-LAST:event_RentActionPerformed
 
+    @Override
+    protected void processWindowEvent(WindowEvent e) {
+        if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+            // Handle window closing event here
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
+        super.processWindowEvent(e);
+    }
+    private void ClosebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosebuttonActionPerformed
+       int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_ClosebuttonActionPerformed
+
     private void PaybuttonActionPerformed(java.awt.event.ActionEvent evt) {                                       
     // Display confirmation dialog
     int dialogResult = JOptionPane.showConfirmDialog(this, "Thank you for your purchase!\nDo you want to exit the program?", "Purchase Confirmation", JOptionPane.OK_CANCEL_OPTION);
@@ -293,6 +317,7 @@ public class Rent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Closebutton;
     private javax.swing.JComboBox<String> Durationbox;
     private javax.swing.JTextField Email;
     private javax.swing.JButton Paybutton;
