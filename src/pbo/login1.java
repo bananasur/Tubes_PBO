@@ -174,41 +174,37 @@ public class login1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private int loginAttempts = 3;
+    private int loginAttempts = 0;
     private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
-        
         String username = Username.getText();
-        String password = Password.getText();
+        String password = new String(Password.getPassword());
+            boolean loginSuccess = false;
 
-        // Check if the username and password are correct
-        if (isValidUser(username, password)) {
-            // Successful login, perform actions here
+        while (loginAttempts < 3) {
+            if (isValidUser(username, password)) {
+                JOptionPane.showMessageDialog(this, "Login successful!");
+                loginSuccess = true;
+                break;
+            } else {
+                loginAttempts++;
+                JOptionPane.showMessageDialog(this, "Invalid username or password. Attempt " + loginAttempts + "/3");
+                Username.setText("");
+                Password.setText("");
+                return;
+            }
+        }
+        if (loginSuccess) {
             Rent rentFrame = new Rent();
-        
-            // Set the visibility of the Rent frame to true
             rentFrame.setVisible(true);
-
-            // Close the current login frame if needed
             this.dispose();
-        } 
+        }
         else {
-        // Invalid login
-        loginAttempts--;
-
-        if (loginAttempts > 0) {
-            // Show an error message with the remaining attempts
-            JOptionPane.showMessageDialog(this, "Login Failed\nInvalid Username or Password\nAttempts left: " + loginAttempts, "Login Failed", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // No more attempts left, exit the application or take appropriate action
-            JOptionPane.showMessageDialog(this, "No more login attempts. Exiting application.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Maximum login attempts reached. Exiting...");
             System.exit(0);
         }
-    }
     }//GEN-LAST:event_LoginbuttonActionPerformed
 
     private boolean isValidUser(String username, String password) {
-        // Add your validation logic here
-        // For example, you can compare with predefined values or check against a database
         return username.equals("surya") && password.equals("banana");
     }
     private void ResetbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbuttonActionPerformed
