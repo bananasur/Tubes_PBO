@@ -42,43 +42,43 @@ public class Rent extends javax.swing.JFrame {
 
         @Override
         public String toString() {
-            return name; // This is used by JList to display the game name
+            return name; 
         }
     }
 
     class BaldurGateIII extends Game {
         public BaldurGateIII() {
-            super("Baldur Gate III", 40000);
+            super("Baldur Gate III", 20000);
         }
     }
 
     class Fifa23 extends Game {
         public Fifa23() {
-            super("Fifa 23", 20000);
+            super("Fifa 23", 5000);
         }
     }
 
     class Spiderman2 extends Game {
         public Spiderman2() {
-            super("Spiderman 2", 40000);
+            super("Spiderman 2", 20000);
         }
     }
 
     class Cyberpunk extends Game {
         public Cyberpunk() {
-            super("Cyberpunk", 40000);
+            super("Cyberpunk", 20000);
         }
     }
 
     class GodOfWar extends Game {
         public GodOfWar() {
-            super("God of War", 50000);
+            super("God of War", 25000);
         }
     }
 
     class NBA2K24 extends Game {
         public NBA2K24() {
-            super("NBA2K24", 20000);
+            super("NBA2K24", 5000);
         }
     }
     
@@ -231,10 +231,6 @@ public class Rent extends javax.swing.JFrame {
 
     
     public int calculateTotalPrice(Game selectedGame, int quantity, int duration) {
-//        if (selectedGame == null) {
-//        System.err.println("Error: Selected game is null");
-//        return -1; // or any other value indicating an error
-//    }
        int basePrice;
         basePrice = selectedGame.price;
 
@@ -260,8 +256,6 @@ public class Rent extends javax.swing.JFrame {
     private void ResetbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                         
     // Reset the text area
     jTextArea1.setText("");
-    
-    // Reset other input fields if needed
     name.setText("");
     Email.setText("");
     gameoption.clearSelection();
@@ -270,39 +264,35 @@ public class Rent extends javax.swing.JFrame {
 } 
     private void RentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentActionPerformed
         
-    // Get the selected game, quantity, and duration
     Game selectedGame = gameoption.getSelectedValue();
     int quantity = Integer.parseInt(Quantitybox.getSelectedItem().toString());
     int duration = Integer.parseInt(Durationbox.getSelectedItem().toString());
 
-    // Validate user input
     String enteredName = name.getText();
     String enteredEmail = Email.getText();
 
-    // Check if the selected game is null or if other required fields are empty
+    //validade user input
     if (selectedGame == null || enteredName.isEmpty() || enteredEmail.isEmpty()) {
-        // Show JOptionPane pop-up for validation error
         JOptionPane.showMessageDialog(this, "Please enter your name, email, and select a game before renting.", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        return; // Exit the method if there is a validation error
+        return;
     }
 
-    // Calculate total price based on the selected game
+    // price
     double taxPercentage = 5.0;
     int totalPriceWithoutTax = calculateTotalPrice(selectedGame, quantity, duration);
     int totalPriceWithTax = calculateTotalPrice(selectedGame, quantity, duration, taxPercentage);
 
-    // Get current date
+    //current date
     java.util.Date currentDate = new java.util.Date();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    String formattedDate = sdf.format(currentDate);
 
-    // Calculate expected return date
+    //expected return date
     Calendar cal = Calendar.getInstance();
     cal.setTime(currentDate);
     cal.add(Calendar.DAY_OF_MONTH, duration);
     String expectedReturnDate = sdf.format(cal.getTime());
 
-    // Display information in the JTextArea
+    
     jTextArea1.setText("Name\t\t: " + enteredName + "\n");
     jTextArea1.append("Email\t\t: " + enteredEmail + "\n");
     jTextArea1.append("Price without Tax\t: " + totalPriceWithoutTax + "\n");
@@ -330,12 +320,12 @@ public class Rent extends javax.swing.JFrame {
     }//GEN-LAST:event_ClosebuttonActionPerformed
 
     private void PaybuttonActionPerformed(java.awt.event.ActionEvent evt) {                                       
-    // Display confirmation dialog
+    
     int dialogResult = JOptionPane.showConfirmDialog(this, "Thank you for your purchase!\nDo you want to exit the program?", "Purchase Confirmation", JOptionPane.OK_CANCEL_OPTION);
 
     // Check user's choice
     if (dialogResult == JOptionPane.OK_OPTION) {
-        // Close the program
+       
         System.exit(0);
     }
 }
