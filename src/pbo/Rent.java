@@ -31,6 +31,56 @@ public class Rent extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    public class Game {
+        protected String name;
+        protected int price;
+
+        public Game(String name, int price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        @Override
+        public String toString() {
+            return name; // This is used by JList to display the game name
+        }
+    }
+
+    class BaldurGateIII extends Game {
+        public BaldurGateIII() {
+            super("Baldur Gate III", 40000);
+        }
+    }
+
+    class Fifa23 extends Game {
+        public Fifa23() {
+            super("Fifa 23", 20000);
+        }
+    }
+
+    class Spiderman2 extends Game {
+        public Spiderman2() {
+            super("Spiderman 2", 40000);
+        }
+    }
+
+    class Cyberpunk extends Game {
+        public Cyberpunk() {
+            super("Cyberpunk", 40000);
+        }
+    }
+
+    class GodOfWar extends Game {
+        public GodOfWar() {
+            super("God of War", 50000);
+        }
+    }
+
+    class NBA2K24 extends Game {
+        public NBA2K24() {
+            super("NBA2K24", 20000);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,14 +131,20 @@ public class Rent extends javax.swing.JFrame {
         container.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 141, 369, 179));
 
         gameoption.setFont(new java.awt.Font("Segoe UI Semibold", 1, 28)); // NOI18N
-        gameoption.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Baldur Gate III", "Fifa 23", "Spiderman 2", "Cyberpunk", "God of War", "NBA2K24" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        gameoption.setModel(new javax.swing.AbstractListModel<Game>() {
+            Game[] games = {new BaldurGateIII(), new Fifa23(), new Spiderman2(), new Cyberpunk(), new GodOfWar(), new NBA2K24()};
+
+            public int getSize() {
+                return games.length;
+            }
+
+            public Game getElementAt(int i) {
+                return games[i];
+            }
         });
         jScrollPane2.setViewportView(gameoption);
 
-        container.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 96, -1, 263));
+        container.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 200, 250));
         container.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 163, 249, 31));
 
         Email.addActionListener(new java.awt.event.ActionListener() {
@@ -174,40 +230,20 @@ public class Rent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public int calculateTotalPrice(String selectedGame, int quantity, int duration) {
-        if (selectedGame == null) {
-        System.err.println("Error: Selected game is null");
-        return -1; // or any other value indicating an error
-    }
-        // Define game prices
-        int baldurPrice = 40000;
-        int fifaPrice = 20000;
-        int spidermanPrice = 40000;
-        int cyberpunkPrice = 40000;
-        int godOfWarPrice = 50000;
-        int nba2k24Price = 20000;
+    public int calculateTotalPrice(Game selectedGame, int quantity, int duration) {
+//        if (selectedGame == null) {
+//        System.err.println("Error: Selected game is null");
+//        return -1; // or any other value indicating an error
+//    }
+       int basePrice;
+        basePrice = selectedGame.price;
 
-        // Calculate total price based on the selected game
-        switch (selectedGame) {
-            case "Baldur Gate III":
-                return baldurPrice * quantity * duration;
-            case "Fifa 23":
-                return fifaPrice * quantity * duration;
-            case "Spiderman 2":
-                return spidermanPrice * quantity * duration;
-            case "Cyberpunk":
-                return cyberpunkPrice * quantity * duration;
-            case "God of War":
-                return godOfWarPrice * quantity * duration;
-            case "NBA2K24":
-                return nba2k24Price * quantity * duration;
-            default:
-                return 0; // or any other value indicating an error
-        }
+    // Calculate total price based on the selected game
+    return basePrice * quantity * duration;
     }
     
     //overloading
-    private int calculateTotalPrice(String selectedGame, int quantity, int duration, double taxPercentage ) {
+    private int calculateTotalPrice(Game selectedGame, int quantity, int duration, double taxPercentage ) {
         int basePrice = calculateTotalPrice(selectedGame, quantity, duration);
 
         
@@ -233,26 +269,27 @@ public class Rent extends javax.swing.JFrame {
     Durationbox.setSelectedIndex(0);
 } 
     private void RentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentActionPerformed
-        // Get selected game, quantity, and duration
-    String selectedGame = gameoption.getSelectedValue();
+        
+    // Get the selected game, quantity, and duration
+    Game selectedGame = gameoption.getSelectedValue();
     int quantity = Integer.parseInt(Quantitybox.getSelectedItem().toString());
     int duration = Integer.parseInt(Durationbox.getSelectedItem().toString());
+
+    // Validate user input
+    String enteredName = name.getText();
+    String enteredEmail = Email.getText();
+
+    // Check if the selected game is null or if other required fields are empty
+    if (selectedGame == null || enteredName.isEmpty() || enteredEmail.isEmpty()) {
+        // Show JOptionPane pop-up for validation error
+        JOptionPane.showMessageDialog(this, "Please enter your name, email, and select a game before renting.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return; // Exit the method if there is a validation error
+    }
 
     // Calculate total price based on the selected game
     double taxPercentage = 5.0;
     int totalPriceWithoutTax = calculateTotalPrice(selectedGame, quantity, duration);
     int totalPriceWithTax = calculateTotalPrice(selectedGame, quantity, duration, taxPercentage);
-
-    // Get user information
-    String enteredName = name.getText();
-    String enteredEmail = Email.getText();
-    
-     // Validate user input
-    if (enteredName.isEmpty() || enteredEmail.isEmpty() || selectedGame == null) {
-        // Show JOptionPane pop-up for validation error
-        JOptionPane.showMessageDialog(this, "Please enter your name, email, and select a game before renting.", "Validation Error", JOptionPane.ERROR_MESSAGE);
-        return; // Exit the method if there is a validation error
-    }
 
     // Get current date
     java.util.Date currentDate = new java.util.Date();
@@ -264,7 +301,6 @@ public class Rent extends javax.swing.JFrame {
     cal.setTime(currentDate);
     cal.add(Calendar.DAY_OF_MONTH, duration);
     String expectedReturnDate = sdf.format(cal.getTime());
-
 
     // Display information in the JTextArea
     jTextArea1.setText("Name\t\t: " + enteredName + "\n");
@@ -327,7 +363,7 @@ public class Rent extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel chooselabel;
     private javax.swing.JPanel container;
-    private javax.swing.JList<String> gameoption;
+    private javax.swing.JList<Game> gameoption;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
